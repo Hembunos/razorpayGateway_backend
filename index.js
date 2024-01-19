@@ -21,7 +21,7 @@ app.post('/createOrder', (req, res) => {
 
     key_id: process.env.RAZORPAY_ID,
 
-    key_secret: process.env.RAZORPAY_SECRET 
+    key_secret: process.env.RAZORPAY_SECRET
   });
 
 
@@ -46,7 +46,7 @@ app.post('/verifyOrder', (req, res) => {
 
   const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = req.body.response;
 
-  const key_secret = 'dHdAdECvx1VLYXHadmulfAtJ';
+  const key_secret = process.env.RAZORPAY_SECRET;
   let hmac = crypto.createHmac('sha256', key_secret);
 
   hmac.update(razorpay_order_id + "|" + razorpay_payment_id);
@@ -68,13 +68,13 @@ app.post('/sendMail', (req, res) => {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'unityyfoundation@gmail.com',
-      pass: 'xdjq qmts zjga ygrc'
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD
     }
   });
 
   const mailOptions = {
-    from: 'unityyfoundation@gmail.com',
+    from: process.env.EMAIL,
     to: req.body.formData.email,
     subject: 'Thank You for Your Generous Donation!',
     text: `Dear ${req.body.formData.name},\n\n` +
