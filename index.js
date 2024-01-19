@@ -19,9 +19,9 @@ app.post('/createOrder', (req, res) => {
 
   const razorpayInstance = new Razorpay({
 
-    key_id: 'rzp_test_n4xVNJMdkd3LXu',
+    key_id: process.env.RAZORPAY_ID,
 
-    key_secret: 'dHdAdECvx1VLYXHadmulfAtJ'
+    key_secret: process.env.RAZORPAY_SECRET 
   });
 
 
