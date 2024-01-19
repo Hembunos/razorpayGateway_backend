@@ -14,7 +14,6 @@ const PORT = process.env.PORT || '8000';
 app.use(cors());
 app.use(bodyParser.json());
 
-
 app.post('/createOrder', (req, res) => {
 
   const razorpayInstance = new Razorpay({
@@ -68,7 +67,7 @@ app.post('/sendMail', (req, res) => {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL,
+      user:  process.env.EMAIL,
       pass: process.env.PASSWORD
     }
   });
